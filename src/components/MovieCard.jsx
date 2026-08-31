@@ -1,6 +1,18 @@
-export default function MovieCard({ title, year, poster, genre, watched }) {
+export default function MovieCard({
+  id,
+  title,
+  year,
+  poster,
+  genre,
+  watched,
+  favorite,
+  onClick,
+}) {
   return (
-    <article>
+    <article className={favorite ? 'movie-card--favorite' : ''}>
+      <button onClick={() => onClick(id)} className='fav-list'>
+        {favorite ? '★' : '☆'}
+      </button>
       <div>
         <h3>{title}</h3>
         <p>{year}</p>
