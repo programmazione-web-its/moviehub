@@ -118,7 +118,7 @@ code {
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  gap: 2rem;
 }
 
 article {
@@ -127,6 +127,7 @@ article {
   background-color: rgba(255, 255, 255, 0.5);
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 article h3 {
@@ -149,4 +150,21 @@ article p {
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+.info {
+  margin-top: auto;
+  color: #fff;
+  padding: 0 3rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.badge {
+  background-color: #aa3bff;
+  color: #fff;
+  padding: 3px 10px;
+  display: inline-block;
+  border-radius: 30px;
+  margin-top: auto;
 }
