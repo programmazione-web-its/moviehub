@@ -1,14 +1,15 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import movies from '../data/movies'
 
 import Container from './components/Container'
 import MovieList from './components/MovieList'
+import SearchBar from './components/SearchBar'
+import Counter from './components/Counter'
 
 function App() {
   const [moviesList, setMoviesList] = useState(movies)
-
-  console.log('movide', movies, moviesList)
+  const [searchTerm, setSearchTerm] = useState('')
 
   function handleFavourites(id) {
     setMoviesList((prev) =>
@@ -18,9 +19,19 @@ function App() {
     )
   }
 
+  const filteredMovies = moviesList.filter((el) =>
+    el.title.toLowerCase().includes(searchTerm.toLowerCase()),
+  )
+
+  const favoriteFilteredMovies = filteredMovies.filter((el) => el.favorite)
+
   return (
     <Container>
-      <MovieList movies={moviesList} onClick={(e) => handleFavourites(e)} />
+      <div className='flex'>
+        <SearchBar inputValue={searchTerm} onChange={setSearchTerm} />
+        <Counter count={favoriteFilteredMovies.length} />
+      </div>
+      <MovieList movies={filteredMovies} onClick={(e) => handleFavourites(e)} />
     </Container>
   )
 }
