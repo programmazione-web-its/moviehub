@@ -1,44 +1,22 @@
-import { useState, useEffect } from 'react'
+import { useContext } from 'react'
 
-import movies from '../data/movies'
+import MoviesContext from './store/movies-context'
 
 import Container from './components/Container'
+import Counter from './components/Counter'
 import MovieList from './components/MovieList'
 import SearchBar from './components/SearchBar'
-import Counter from './components/Counter'
 
 function App() {
-  const [moviesList, setMoviesList] = useState(() => {
-    const savedMovies = localStorage.getItem('savedMovies')
-    return savedMovies ? JSON.parse(savedMovies) : movies
-  })
+  const moviesCtx = useContext(MoviesContext)
 
-  const [searchTerm, setSearchTerm] = useState('')
-
-  function handleFavourites(id) {
-    setMoviesList((prev) =>
-      prev.map((el) =>
-        el.id === id ? { ...el, favorite: !el.favorite } : { ...el },
-      ),
-    )
-  }
-
-  const filteredMovies = moviesList.filter((el) =>
-    el.title.toLowerCase().includes(searchTerm.toLowerCase()),
-  )
-
-  const favoriteFilteredMovies = filteredMovies.filter((el) => el.favorite)
-
-  useEffect(() => {
-    if (!moviesList) return
-    localStorage.setItem('savedMovies', JSON.stringify(moviesList))
-  }, [moviesList])
+  const { handleFavourites, filteredMovies } = moviesCtx
 
   return (
     <Container>
       <div className='flex'>
-        <SearchBar inputValue={searchTerm} onChange={setSearchTerm} />
-        <Counter count={favoriteFilteredMovies.length} />
+        <SearchBar />
+        <Counter />
       </div>
       <MovieList movies={filteredMovies} onClick={(e) => handleFavourites(e)} />
     </Container>

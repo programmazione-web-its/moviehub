@@ -1,8 +1,12 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useContext } from 'react'
 
-export default function SearchBar({ inputValue, onChange }) {
+import MoviesContext from '../store/movies-context'
+
+export default function SearchBar() {
   const inputRef = useRef(null)
+  const movieCtx = useContext(MoviesContext)
 
+  const { searchTerm, setSearchTerm } = movieCtx
   useEffect(() => {
     if (!inputRef?.current) return
     inputRef.current.focus()
@@ -13,8 +17,8 @@ export default function SearchBar({ inputValue, onChange }) {
       <input
         ref={inputRef}
         type='text'
-        value={inputValue}
-        onChange={(e) => onChange(e.target.value)}
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
         placeholder='Cerca...'
       />
     </div>
