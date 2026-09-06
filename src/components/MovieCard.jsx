@@ -1,8 +1,8 @@
 export default function MovieCard({
   id,
   title,
-  year,
-  poster,
+  release_date,
+  poster_path,
   genre,
   watched,
   favorite,
@@ -15,11 +15,11 @@ export default function MovieCard({
       </button>
       <div>
         <h3>{title}</h3>
-        <p>{year}</p>
+        <p>{new Date(release_date).getFullYear()}</p>
       </div>
       <div className='poster'>
         <img
-          src={new URL(`../assets/movies/${poster}`, import.meta.url).href}
+          src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
           alt={`${title} poster`}
         />
       </div>
