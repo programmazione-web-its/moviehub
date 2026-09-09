@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 export default function MovieCard({
   id,
   title,
@@ -13,21 +15,23 @@ export default function MovieCard({
       <button onClick={() => onClick(id)} className='fav-list'>
         {favorite ? '★' : '☆'}
       </button>
-      <div>
-        <h3>{title}</h3>
-        <p>{new Date(release_date).getFullYear()}</p>
-      </div>
-      <div className='poster'>
-        <img
-          src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
-          alt={`${title} poster`}
-        />
-      </div>
-      <hr />
-      <div className='info'>
-        {watched ? '✅ Visto' : '👀 Da vedere'}
-        {genre && <span className='badge'>{genre}</span>}
-      </div>
+      <Link to={`/movies/${id}`}>
+        <div>
+          <h3>{title}</h3>
+          <p>{new Date(release_date).getFullYear()}</p>
+        </div>
+        <div className='poster'>
+          <img
+            src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+            alt={`${title} poster`}
+          />
+        </div>
+
+        <div className='info'>
+          {watched ? '✅ Visto' : '👀 Da vedere'}
+          {genre && <span className='badge'>{genre}</span>}
+        </div>
+      </Link>
     </article>
   )
 }

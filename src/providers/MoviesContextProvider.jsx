@@ -61,6 +61,8 @@ export default function MoviesContextProvider({ children }) {
     searchTerm,
     setSearchTerm,
     filteredMovies,
+    error,
+    loading,
   }
   return <MoviesContext.Provider value={ctx}>{children}</MoviesContext.Provider>
 }

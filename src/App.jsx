@@ -1,26 +1,9 @@
-import { useContext } from 'react'
+import { RouterProvider } from 'react-router-dom'
 
-import MoviesContext from './store/movies-context'
-
-import Container from './components/Container'
-import Counter from './components/Counter'
-import MovieList from './components/MovieList'
-import SearchBar from './components/SearchBar'
+import router from './routes'
 
 function App() {
-  const moviesCtx = useContext(MoviesContext)
-
-  const { handleFavourites, filteredMovies } = moviesCtx
-
-  return (
-    <Container>
-      <div className='flex'>
-        <SearchBar />
-        <Counter />
-      </div>
-      <MovieList movies={filteredMovies} onClick={(e) => handleFavourites(e)} />
-    </Container>
-  )
+  return <RouterProvider router={router} />
 }
 
 export default App
