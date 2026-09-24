@@ -8,10 +8,12 @@ export default function MoviesContextProvider({ children }) {
   const { data, error, isLoading } = useFetch('movie/popular')
   const [favoriteIds, setFavoriteIds] = useState([])
 
-  const moviesList = (data?.results ?? []).map((m) => ({
-    ...m,
-    favorite: favoriteIds.includes(m.id),
+  const moviesList = (data?.results ?? []).map((movie) => ({
+    ...movie,
+    favorite: favoriteIds.includes(movie.id),
   }))
+
+  // ☝️(data?.results ?? []).map... => se data non è ancora arrivato (undefined) usa un array vuoto, così .map() funziona sempre
 
   const filteredMovies = moviesList.filter((el) =>
     el.title.toLowerCase().includes(searchTerm.toLowerCase()),
