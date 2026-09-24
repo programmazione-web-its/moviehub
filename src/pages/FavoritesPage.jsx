@@ -19,10 +19,12 @@ export default function FavoritesPage() {
           onClick={(e) => handleFavourites(e)}
         />
       ) : (
-        <h1>
-          Looks like you have no favorites movies,{' '}
-          <Link to='/'>go back to homepage</Link> and add some
-        </h1>
+        <div className='min-h-screen'>
+          <h1>
+            Looks like you have no favorites movies,{' '}
+            <Link to='/'>go back to homepage</Link> and add some
+          </h1>
+        </div>
       )}
     </Container>
   )

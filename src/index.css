@@ -115,6 +115,10 @@ article a {
   text-decoration: none;
 }
 
+a:focus {
+  color: inherit;
+}
+
 article h3 {
   color: var(--text-h);
 }
@@ -231,4 +235,8 @@ nav a:hover::after,
 nav a.active::after {
   transform: scaleX(1);
   transform-origin: left;
+}
+
+.min-h-screen {
+  min-height: 100vh;
 }
