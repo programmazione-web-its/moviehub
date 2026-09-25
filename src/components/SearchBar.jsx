@@ -2,6 +2,7 @@ import { useRef, useEffect, useContext } from 'react'
 
 import MoviesContext from '../store/movies-context'
 
+// Da sistemare e gestire con useFetch
 export default function SearchBar() {
   const inputRef = useRef(null)
   const movieCtx = useContext(MoviesContext)
@@ -12,8 +13,12 @@ export default function SearchBar() {
     inputRef.current.focus()
   }, [])
 
+  function searchMovies(e) {
+    e.preventDefault()
+  }
+
   return (
-    <div className='search-bar-wrapper'>
+    <form onSubmit={searchMovies} className='search-bar-wrapper'>
       <input
         ref={inputRef}
         type='text'
@@ -21,6 +26,6 @@ export default function SearchBar() {
         onChange={(e) => setSearchTerm(e.target.value)}
         placeholder='Cerca...'
       />
-    </div>
+    </form>
   )
 }
